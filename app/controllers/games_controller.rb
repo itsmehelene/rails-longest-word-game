@@ -22,13 +22,15 @@ class GamesController < ApplicationController
 
   def presence_in_grid
     grid = session[:grid]
+    result = true
     params[:name].split('').each do |letter|
       if grid.include? letter
-        grid.delete_at(grid.index(letter))
+        grid.delete(letter)
       else
-        false
+        result = false
       end
     end
+    result
   end
 
   def request_api
